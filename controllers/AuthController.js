@@ -58,4 +58,4 @@ class AuthController{
 
 
 }
-export default AuthController;:
+export default AuthController;

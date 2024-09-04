@@ -1,31 +1,61 @@
 const express = require('express');
 const router = express.Router();
 const AppController = require('../controllers/AppController');
+const AuthController = require('../controllers/AuthController');
+const UserController = require('../controllers/UserController');
+const FilesController = require('../controllers/FilesController');
 
+// Existing routes
+router.get('/status', (req, res) => {
+    AppController.getStatus(req, res);
+});
 
-route.get('/status', (req, res) => {
-AppController.getStatus
-})
+router.get('/connect', (req, res) => {
+    AuthController.getConnect(req, res);
+});
 
-route.get('/connect', () => {
-AuthController.getConnect	
-})
-route.get('/disconnect', () => {
-AuthController.getDisconnect
-})
-route.get('./users/me', () => {
-UserController.getMe
-})
-route.get('/stats', (req, res) => {
-AppController.getStats
-})
-route.post('/users', (req, res) => {
-UsersController.postNew
-})
-route.post('users',  (req, res) => {
-AppController.postNew
-})
+router.get('/disconnect', (req, res) => {
+    AuthController.getDisconnect(req, res);
+});
 
-route.post('files', (req, res) => {
-FilesController.postUpload
-}
+router.get('/users/me', (req, res) => {
+    UserController.getMe(req, res);
+});
+
+router.get('/stats', (req, res) => {
+    AppController.getStats(req, res);
+});
+
+router.post('/users', (req, res) => {
+    UserController.postNew(req, res);
+});
+
+router.post('/users', (req, res) => {
+    AppController.postNew(req, res);
+});
+
+router.post('/files', (req, res) => {
+    FilesController.postUpload(req, res);
+});
+
+router.get('/files/:id', (req, res) => {
+    FilesController.getShow(req, res);
+});
+
+router.get('/files', (req, res) => {
+    FilesController.getIndex(req, res);
+});
+
+router.put('/files/:id/publish', (req, res) => {
+    FilesController.putPublish(req, res);
+});
+
+router.put('/files/:id/unpublish', (req, res) => {
+    FilesController.putUnpublish(req, res);
+});
+
+router.get('/files/:id/data', (req, res) => {
+    FilesController.getFile(req, res);
+});
+
+module.exports = router;
